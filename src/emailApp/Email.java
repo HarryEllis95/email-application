@@ -1,8 +1,10 @@
 package emailApp;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+// Email administration system - methods
 
 public class Email {
 	
@@ -12,6 +14,8 @@ public class Email {
 	private String fname, lname, dept, email, password;
 	private String editEmail;
 	private int mailLimit = 1000;
+	private String file = "C:\\Users\\44784\\Documents\\Programming\\Java"
+			+ "\\Projects\\Email_administration_system\\src\\emailApp\\info.txt";
 
 	public Email(String fname, String lname) {    // public constructor to set first and last names
 		this.fname = fname;
@@ -26,7 +30,7 @@ public class Email {
 	
 	// Create method to generate email, noting the convention of emails being lower case 
 	private String emailGeneration() {
-		return this.fname.toLowerCase() + "." + this.lname.toLowerCase() + "@" + this.dept.toLowerCase() + " .company.com";
+		return this.fname.toLowerCase() + "." + this.lname.toLowerCase() + "@" + this.dept.toLowerCase() + ".company.com";
 	}
 	
 	// Getting department info from user
@@ -72,6 +76,7 @@ public class Email {
 		do {
 			System.out.println("Do you want to change your password!(Y/N)");
 			char choice = s.next().charAt(0);
+			
 			if (Character.toLowerCase(choice) == 'y') {  // ensure a match is found if they entered 'y' instead of 'Y'
 				flag = true;
 				System.out.println("Enter current password: ");
@@ -109,11 +114,40 @@ public class Email {
 	
 	// Display user info
 	public void getInfo() {
-		System.out.println("New: " + this.fname + " " + this.lname);
+		System.out.println("\nNew: " + this.fname + " " + this.lname);
 		System.out.println("Department: " + this.dept);
 		System.out.println("Email: " + this.email);
 		System.out.println("Password: " + this.password);    // for testing only
 		System.out.println("Mailbox capacity: " + this.mailLimit + "mb");
 		System.out.println("Alternate mail: " + this.editEmail);
+	}
+	
+	// Store info in file
+	public void storeFile() {
+		try (BufferedWriter in = new BufferedWriter(new FileWriter(new File(file)))) {  // chose area to store info
+			in.write("First name: " + this.fname);
+			in.append("\nLast name: " + this.lname);
+			in.append("\nEmail: " + this.email);
+			in.append("\nPassword: " + this.password);
+			in.append("\nCapacity: " + this.mailLimit);
+			in.append("\nAlternate mail: " + this.editEmail);
+			System.out.println("\nData Stored");
+			// close() implicitly called 
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	// Reading info from file
+	public void readFile() {
+		try (BufferedReader f1 = new BufferedReader(new FileReader(new File(file)))) {
+			String s;
+			System.out.println("");
+			while ((s=f1.readLine())!=null) {
+				System.out.println(s);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

@@ -1,0 +1,6 @@
+First name: Harry
+Last name: Ellis
+Email: harry.ellis@development.company.com
+Password: IPSSd90Rr&Ikprk
+Capacity: 1000
+Alternate mail: null

@@ -2,6 +2,8 @@ package emailApp;
 
 import java.util.Scanner;
 
+// Email administration system - class to run
+
 public class EmailApp {
 
 	public static void main(String[] args) {
@@ -16,8 +18,9 @@ public class EmailApp {
 		Email email1 = new Email(fname, lname);
 		int choice = -1;
 		do {
-			System.out.println("\n******\nEnter your choice: \n1. Show Info\n2. Change password\n3. Change mailbox capacity"
-					+ "\n4. Set alternate mail\n5. Exit");
+			System.out.println("\n**********************"
+					+ "\nEnter your choice: \n1. Show Info\n2. Change password\n3. Change mailbox capacity"
+					+ "\n4. Set alternate mail\n5. Store data in file\n6. Display data from file\n7. Exit");
 			choice = s.nextInt();
 			switch (choice) {
 				case 1: email1.getInfo();
@@ -28,10 +31,14 @@ public class EmailApp {
 					break;
 				case 4: email1.alternateEmail();
 					break;
-				case 5: System.out.println("Thank you for using the application!");
+				case 5: email1.storeFile();
+					break;
+				case 6: email1.readFile();
+					break;
+				case 7: System.out.println("Thank you for using the application!");
 					break;
 				default: System.out.println("Invalid choice!\n Please enter a valid choice.");
 			}
-		} while(choice!=5);
+		} while(choice!=7);
 	}
 }
