@@ -1,0 +1,14 @@
+Application Requirements
+
+I want to be able to generate an email with the following syntax:
+'filename.lastname@department.company.com'
+
+I want to be able to determine the relevent department, and if none then leave blank
+
+Generate a random String for a password
+
+Use setters to change the password, set mailbox capacity and define alternate email address
+
+Use getters to display name, email, and mailbox capacity
+
+Implement File handling methods to store data into .txt file
